@@ -64,3 +64,4 @@ CREATE TABLE IF NOT EXISTS user_permissions (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     PRIMARY KEY (device_id, user_id)
 );
+
