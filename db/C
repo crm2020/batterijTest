@@ -1,0 +1,63 @@
+CREATE DATABASE batterij
+
+-- Tabel voor apparaten (devices)
+CREATE TABLE devices (
+    device_id INTEGER PRIMARY KEY,
+    display_name VARCHAR(50),
+    api_key VARCHAR(255),
+    description VARCHAR(255),
+    motor1 INTEGER,
+    motor2 INTEGER,
+    online BOOLEAN,
+    image VARCHAR(20)
+);
+
+-- Tabel voor logboek (logs)
+CREATE TABLE logs (
+    time DATETIME,
+    user_id INTEGER,
+    message VARCHAR(255),
+    ip VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Tabel voor metingen (measurments)
+CREATE TABLE measurments (
+    time DATETIME,
+    measurment_id INTEGER PRIMARY KEY,
+    device_id INTEGER,
+    voltage FLOAT,
+    temperature FLOAT,
+    amperage FLOAT,
+    motor1 INTEGER,
+    motor2 INTEGER,
+    FOREIGN KEY (device_id) REFERENCES devices(device_id)
+);
+
+-- Tabel voor wachtwoord reset (reset_password)
+CREATE TABLE reset_password (
+    reset_id VARCHAR(11) PRIMARY KEY,
+    expire DATE,
+    user_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Tabel voor gebruikers (users)
+CREATE TABLE users (
+    user_id INTEGER PRIMARY KEY,
+    username VARCHAR(255),
+    admin INTEGER,
+    password VARCHAR(255),
+    name VARCHAR(255),
+    email VARCHAR(255)
+);
+
+-- Tabel voor gebruikersrechten (user_permissions)
+CREATE TABLE user_permissions (
+    device_id INTEGER,
+    user_id INTEGER,
+    permissions VARCHAR(10),
+    FOREIGN KEY (device_id) REFERENCES devices(device_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    PRIMARY KEY (device_id, user_id)
+);
