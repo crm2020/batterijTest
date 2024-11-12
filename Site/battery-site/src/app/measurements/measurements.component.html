@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div [style.margin-left]="isExpanded ? '14em' : '3.3em'" class="content height-100 bg-light">
+  <div class="nav-close">
+    <button class="btn" (click)="toggleSidebar()">
+      <i [class]="isExpanded ? 'bx bx-chevrons-left expand' : 'bx bx-chevrons-right expand'"></i>
+    </button>
+  </div>
+  <div class="title">
+    <h2>Measurements</h2>
+  </div>
+  <p>
+    There is a diagram displaying the temperature, voltage and ampere for each device that has data saved, that falls within the interval.
+    You can choose to display all data in history, display a pre-determined interval or display the data you desire.
+  </p>
+  <div class="notify">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>Notice</strong> A too broad request can take a lot of time to display.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </div>
+  <p>Display measurements between:
+    <input type="datetime-local" id="start-time" name="start-time">
+    and
+    <input type="datetime-local" id="end-time" name="end-time">
+    <button class="btn btn-primary">Display specified interval</button>
+    <button class="btn btn-primary">Display last 24h</button>
+    <button class="btn btn-primary">Display last 7d</button>
+  </p>
+  <hr>
+
+  <div class="canvas-container">
+    <canvas id="lineChart" width="300" height="100" aria-label="Hello ARIA World" role="img"></canvas>
+  </div>
+
+
+<!--  <div class="chart">-->
+<!--    <ngx-charts-line-chart-->
+<!--      [legend]="legend"-->
+<!--      [showXAxisLabel]="showXAxisLabel"-->
+<!--      [showYAxisLabel]="showYAxisLabel"-->
+<!--      [xAxis]="xAxis"-->
+<!--      [yAxis]="yAxis"-->
+<!--      [xAxisLabel]="xAxisLabel"-->
+<!--      [yAxisLabel]="yAxisLabel"-->
+<!--      [timeline]="timeline"-->
+<!--      [animations]="animations"-->
+<!--      [legendTitle]="legendTitle"-->
+<!--    >-->
+<!--    </ngx-charts-line-chart>-->
+<!--  </div>-->
+
+</div>
