@@ -3,5 +3,5 @@
 # batterijTest
 
 
-werkt dit? ja dit werkt
+werkt dit? ja dit werkt. dit ook
 
