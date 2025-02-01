@@ -1,0 +1,41 @@
+p {
+  padding: 0 1rem 1rem 2rem;
+}
+
+.alert {
+  width: 95%;
+}
+
+.notify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btn-primary {
+  margin-left: 1rem;
+  margin-bottom: 0.5vh;
+  background-color: #4723D9;
+  border-color: #4723D9;
+}
+
+.btn-primary:active {
+  background-color: #361cb1;
+  border-color: #361cb1;
+}
+
+.chart {
+  flex: 1;
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust as needed */
+}
+
+.content {
+  overflow: scroll;
+}

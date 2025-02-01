@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+    sensor_api:
+        build: ./sensor_api
+        container_name: sensor_api
+        ports:
+            - "8007:8007"
+        environment:
+            DB_HOST: db              # connect to the database 
+            DB_PORT: 3306
+            DB_USER: root
+            DB_password: test
+            DB_NAME: BatterijTest
+        networks:
+            - battery_network       # connect to the shared network
+
+    site_api:
+        build: ./site_api
+        container_name: site_api
+        ports:
+            - "8008:8008"
+        environment:
+            DB_HOST: db             # connect to the database
+            DB_PORT: 3306
+            DB_USER: root
+            DB_password: test
+            DB_NAME: BatterijTest
+        networks:
+            - battery_network       # connect to the shared network
+
+    db:
+        image: mysql:latest
+        container_name: mysql-container
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: test   # set MYSQL root password
+        ports:
+            - "3306:3306"           # expose MYSQL port
+        volumes:
+            - db-data:/var/lib/mysql  # presist the data
+        networks:
+            - battery_network       # connect to the shared network
+
+    dep_api:
+        build: ./dep_api/Api server
+        container_name: dep_api
+        ports:
+            - "8009:8009"
+        environment:
+            DB_HOST: db             # connect to the database in the main docker-compose file
+            DB_PORT: 3306
+            DB_USER: root
+            DB_password: test
+            DB_NAME: BatterijTest
+        networks:
+            - battery_network     # connect to the shared network
+
+
+volumes:
+    db-data:               # volume for MYSQL data
+
+networks:
+    battery_network:       # define the shared network for communication
+        external: false
